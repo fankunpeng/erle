@@ -27,8 +27,8 @@ normalize(N) ->
     [N rem Limit | lists:duplicate(N div Limit, Limit)].
 
 %%% Event's innards
-init(Server, EventName, Delay) ->
-    loop(#state{server = Server, name = EventName, to_go = normalize(Delay)}).
+init(Server, EventName, DateTime) ->
+    loop(#state{server = Server, name = EventName, to_go = time_to_go(DateTime)}).
 
 cancel(Pid) ->
     Ref = erlang:monitor(process, Pid),
